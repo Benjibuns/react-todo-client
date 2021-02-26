@@ -38,17 +38,30 @@ class App extends Component {
       });
   };
 
-  renderTodos = () => {
-    return this.state.todos.map(todo => {
-      return(
-        <div key={todo.id} className="todo-item">
-          <input type="checkbox"/>
-          <p>{todo.title}</p>
-          <button>X</button>
-        </div>
-      )
+  handleDelete = (id) => {
+    axios({
+      method: "DELETE",
+      url: `https://localhost:5000/api/delete-todo/${id}`,
     })
-  }
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  renderTodos = () => {
+    return this.state.todos.map((todo) => {
+      return (
+        <div key={todo.id} className="todo-item">
+          <input type="checkbox" />
+          <p>{todo.title}</p>
+          <button onClick={() => this.handleDelete(todo.id)}>X</button>
+        </div>
+      );
+    });
+  };
 
   componentDidMount() {
     axios({
