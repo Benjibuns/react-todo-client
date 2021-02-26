@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import axios from "axios";
 
 class App extends Component {
   constructor(props) {
@@ -15,9 +16,23 @@ class App extends Component {
   };
 
   handleSubmit = (e) => {
-    e.preventDefault()
-    console.log(this.state);
-  }
+    e.preventDefault();
+    axios({
+      method: "POST",
+      url: "http://localhost:5000/api/add-todo",
+      data: {
+        title: this.state.title,
+        done: false,
+      },
+      "Content-Type": "application/json",
+    })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   render() {
     return (
