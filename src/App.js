@@ -69,7 +69,6 @@ class App extends Component {
       url: "http://localhost:5000/api/get-all-todos",
     })
       .then((res) => {
-        console.log(res);
         this.setState({
           todos: res.data,
         });
