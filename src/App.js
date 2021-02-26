@@ -6,6 +6,7 @@ class App extends Component {
     super(props);
     this.state = {
       title: "",
+      todos: [],
     };
   }
 
@@ -27,7 +28,10 @@ class App extends Component {
       "Content-Type": "application/json",
     })
       .then((res) => {
-        console.log(res);
+        this.setState({
+          todos: [res.data, ...this.state.todos],
+          title: "",
+        });
       })
       .catch((err) => {
         console.log(err);
