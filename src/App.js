@@ -41,10 +41,14 @@ class App extends Component {
   handleDelete = (id) => {
     axios({
       method: "DELETE",
-      url: `https://localhost:5000/api/delete-todo/${id}`,
+      url: `http://localhost:5000/api/delete-todo/${id}`,
     })
       .then((res) => {
-        console.log(res);
+        this.setState({
+          todos: this.state.todos.filter((todo) => {
+            return todo.id !== id;
+          }),
+        });
       })
       .catch((err) => {
         console.log(err);
