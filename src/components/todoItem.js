@@ -9,7 +9,7 @@ class TodoItem extends Component {
   }
 
   handleDone = () => {
-    fetch(`http://localhost:5000/api/edit-done/${this.props.todo.id}`, {
+    fetch(`https://br-flask-todo-api.herokuapp.com/api/edit-done/${this.props.todo.id}`, {
       method: "PATCH",
       headers: { "content-type": "application/json" },
       body: JSON.stringify({
