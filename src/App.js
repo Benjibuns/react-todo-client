@@ -66,7 +66,6 @@ class App extends Component {
   };
 
   componentDidMount() {
-    console.log(API_URL);
     axios({
       method: "GET",
       url: `${API_URL}/get-all-todos`,
