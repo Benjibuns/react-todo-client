@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import TodoItem from "./components/todoItem";
+import { API_URL } from "./api/api";
 
 class App extends Component {
   constructor(props) {
@@ -59,19 +60,16 @@ class App extends Component {
   renderTodos = () => {
     return this.state.todos.map((todo) => {
       return (
-        <TodoItem
-          key={todo.id}
-          todo={todo}
-          handleDelete={this.handleDelete}
-        />
+        <TodoItem key={todo.id} todo={todo} handleDelete={this.handleDelete} />
       );
     });
   };
 
   componentDidMount() {
+    console.log(API_URL);
     axios({
       method: "GET",
-      url: "https://br-flask-todo-api.herokuapp.com/api/get-all-todos",
+      url: `${API_URL}/get-all-todos`,
     })
       .then((res) => {
         this.setState({
